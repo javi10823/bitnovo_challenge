@@ -1,10 +1,18 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native';
-import {Home} from './src/screens';
-import {Header} from './src/components';
+import {Home, SelectBadge} from './src/screens';
 import {PaperProvider} from 'react-native-paper';
 import {theme} from './src/config/theme';
+
+export type ScreenNames = ['home', 'selectBadge']; // type these manually
+export type RootStackParamList = Record<ScreenNames[number], undefined>;
+export type StackNavigation = NavigationProp<RootStackParamList>;
+export const useAppNavigation = useNavigation<StackNavigation>;
 
 const Stack = createNativeStackNavigator();
 
@@ -15,9 +23,10 @@ function App(): React.JSX.Element {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              header: Header,
+              headerShown: false,
             }}>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="selectBadge" component={SelectBadge} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
