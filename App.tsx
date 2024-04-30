@@ -9,6 +9,7 @@ import {Home, SelectBadge} from './src/screens';
 import {PaperProvider} from 'react-native-paper';
 import {theme} from './src/config/theme';
 import {ThemeProvider} from 'styled-components';
+import './services/i18next';
 
 export type ScreenNames = ['home', 'selectBadge']; // type these manually
 export type RootStackParamList = Record<ScreenNames[number], undefined>;
