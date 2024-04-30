@@ -1,16 +1,22 @@
-import {useState} from 'react';
-import {View} from 'react-native';
-import {NumberInput, TextInput, Typography} from '../../components';
-import {styles} from './styles';
+import React, {useMemo, useState} from 'react';
+import {Button, NumberInput, TextInput, Typography} from '../../components';
+import {
+  ButtonContainer,
+  NumberInputContainer,
+  Section,
+  StyledRow,
+  TextInputContainer,
+} from './styles';
 
 const Home = () => {
-  const [value, setValue] = useState('');
-  const [description, setDescription] = useState('');
-  const inputColor = value ? '#035AC5' : '#C0CCDA';
+  const [value, setValue] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const inputColor = useMemo(() => (value ? '#035AC5' : '#C0CCDA'), [value]);
   const maxLength = 140;
+
   return (
-    <View style={[styles.section]}>
-      <View style={[styles.containerNumberInput]}>
+    <Section>
+      <NumberInputContainer>
         <Typography variant="input" color={inputColor}>
           $
         </Typography>
@@ -20,11 +26,16 @@ const Home = () => {
           placeholder="0,00"
           color={inputColor}
         />
-      </View>
-      <View style={[styles.containerTextInput]}>
-        <View style={[styles.rowTextInput]}>
+      </NumberInputContainer>
+      <TextInputContainer>
+        <StyledRow
+          paddingLeft={10}
+          marginBottom={10}
+          width="100%"
+          justifyContent="center"
+          alignItems="flex-start">
           <Typography variant="text">Concepto</Typography>
-        </View>
+        </StyledRow>
         <TextInput
           width="100%"
           height="56"
@@ -33,14 +44,28 @@ const Home = () => {
           maxLength={maxLength}
         />
         {description.length > 0 && (
-          <View style={[styles.rowCharactersTextInput]}>
+          <StyledRow
+            paddingLeft={10}
+            marginBottom={10}
+            width="100%"
+            justifyContent="center"
+            alignItems="flex-end">
             <Typography variant="placeholder">
               {`${description.length} / ${maxLength}`} caracteres
             </Typography>
-          </View>
+          </StyledRow>
         )}
-      </View>
-    </View>
+      </TextInputContainer>
+      <ButtonContainer>
+        <Button
+          width="100%"
+          height="50px"
+          disabled={value.length === 0}
+          onPress={() => console.log('Button Pressed')}>
+          Continuar
+        </Button>
+      </ButtonContainer>
+    </Section>
   );
 };
 

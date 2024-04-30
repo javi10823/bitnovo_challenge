@@ -3,7 +3,7 @@ import {InputProps} from './types';
 
 export const Input = styled.TextInput<InputProps>`
   width: ${props => props.width};
-  min-height: ${props => props.height};
+  min-height: ${props => props.height}px;
   border-radius: 6px;
   border: 1px solid #e5e9f2;
   font-family: 'Mulish';
