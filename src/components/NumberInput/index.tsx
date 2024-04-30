@@ -7,16 +7,14 @@ const NumberInput = ({
   onChangeText,
   placeholder,
   style,
-}: ExtendedNumberInputProps) => {
-  return (
-    <StyledInput
-      value={value}
-      onChangeText={onChangeText}
-      placeholder={placeholder}
-      placeholderTextColor={style?.color}
-      style={style}
-    />
-  );
-};
+}: ExtendedNumberInputProps) => (
+  <StyledInput
+    value={value}
+    onChangeText={onChangeText}
+    placeholder={placeholder}
+    placeholderTextColor={style?.color}
+    style={style}
+  />
+);
 
 export default NumberInput;
