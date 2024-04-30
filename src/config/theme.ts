@@ -2,10 +2,14 @@ import {DefaultTheme, useTheme} from 'react-native-paper';
 
 const colors = {
   primary: '#035AC5',
-  onPrimary: '#FFFFFF',
-  secondary: '#EAF3FF',
-  onSecondary: '#71B0FD',
-  tertiary: '#C0CCDA',
+  primaryDark: '#002859',
+  secondary8: '#C0CCDA',
+  secondary7: '#71B0FD',
+  secondary6: '#EAF3FF',
+  secondary5: '#FFFFFF',
+  secondary4: '#EFF2F7',
+  secondary3: '#E5E9F2',
+  secondaryDark4: '#647184',
 };
 
 export const theme = {

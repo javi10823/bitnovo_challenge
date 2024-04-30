@@ -1,3 +1,5 @@
+import {TextStyle} from 'react-native';
+
 export type NumberInputProps = {
   value: string;
   onChangeText: (text: string) => void;
@@ -5,5 +7,5 @@ export type NumberInputProps = {
 };
 
 export interface ExtendedNumberInputProps extends NumberInputProps {
-  color?: string;
+  style?: TextStyle;
 }

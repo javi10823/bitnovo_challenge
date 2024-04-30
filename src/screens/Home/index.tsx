@@ -7,17 +7,18 @@ import {
   StyledRow,
   TextInputContainer,
 } from './styles';
-import {useTheme} from 'react-native-paper';
+import {useAppTheme} from '../../config/theme';
+
+const maxLength = 140;
 
 const Home = () => {
-  const theme = useTheme();
+  const theme = useAppTheme();
   const [value, setValue] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const inputColor = useMemo(
-    () => (value ? theme.colors.primary : theme.colors.tertiary),
+    () => (value ? theme.colors.primary : theme.colors.secondary8),
     [value, theme.colors],
   );
-  const maxLength = 140;
 
   return (
     <Section>
@@ -29,7 +30,7 @@ const Home = () => {
           value={value}
           onChangeText={setValue}
           placeholder="0,00"
-          color={inputColor}
+          style={{color: inputColor}}
         />
       </NumberInputContainer>
       <TextInputContainer>
@@ -39,7 +40,9 @@ const Home = () => {
           width="100%"
           justifyContent="center"
           alignItems="flex-start">
-          <Typography variant="text">Concepto</Typography>
+          <Typography variant="text" color={theme.colors.primaryDark}>
+            Concepto
+          </Typography>
         </StyledRow>
         <TextInput
           width="100%"

@@ -50,8 +50,7 @@ export const StyledRow = styled.View<StyledRowProps>`
   padding-right: ${props =>
     props.paddingRight ? `${props.paddingRight}px` : '0px'};
   margin-top: ${props => (props.marginTop ? `${props.marginTop}px` : '0px')};
-  width: ${props =>
-    typeof props.width === 'number' ? `${props.width}px` : props.width};
+  width: ${props => props.width || 'auto'};
   justify-content: ${props => props.justifyContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'flex-start'};
 `;

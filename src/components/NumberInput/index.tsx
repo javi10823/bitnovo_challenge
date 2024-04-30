@@ -2,19 +2,19 @@ import React from 'react';
 import {StyledInput} from './styles';
 import {ExtendedNumberInputProps} from './types';
 
-const NumberInput: React.FC<ExtendedNumberInputProps> = ({
+const NumberInput = ({
   value,
   onChangeText,
   placeholder,
-  color,
-}) => {
+  style,
+}: ExtendedNumberInputProps) => {
   return (
     <StyledInput
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}
-      placeholderTextColor={color}
-      style={{color}}
+      placeholderTextColor={style?.color}
+      style={style}
     />
   );
 };
