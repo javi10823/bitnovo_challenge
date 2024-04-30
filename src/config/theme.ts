@@ -2,6 +2,7 @@ import {DefaultTheme, useTheme} from 'react-native-paper';
 
 const colors = {
   primary: '#035AC5',
+  secondary: '#EAF3FF',
 };
 
 export const theme = {

@@ -10,9 +10,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerNumberInput: {
-    borderColor: 'red',
-    borderWidth: 1,
-    borderStyle: 'solid',
     width: '90%',
     flex: 0.2,
     flexDirection: 'row',
@@ -20,18 +17,23 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerTextInput: {
-    borderColor: 'red',
-    borderWidth: 1,
-    borderStyle: 'solid',
     width: '90%',
     flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   rowTextInput: {
-    marginBottom: 10,
+    paddingLeft: 5,
+    marginBottom: 5,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
+  },
+  rowCharactersTextInput: {
+    paddingRight: 5,
+    marginTop: 5,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
 });

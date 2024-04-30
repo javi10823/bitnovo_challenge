@@ -11,4 +11,6 @@ export const StyledInput = styled.TextInput.attrs(() => ({
   text-align: center;
   color: #c0ccda;
   height: auto;
+  min-width: 100px;
+  width: auto;
 `;

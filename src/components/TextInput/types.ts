@@ -5,3 +5,16 @@ export type InputProps = TextInputProps & {
   height: string;
   placeholderTextColor?: string;
 };
+
+export interface ContentSize {
+  width: number;
+  height: number;
+}
+
+export interface NativeEvent {
+  contentSize: ContentSize;
+}
+
+export interface ContentSizeChangeEvent {
+  nativeEvent: NativeEvent;
+}

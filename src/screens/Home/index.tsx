@@ -5,11 +5,21 @@ import {styles} from './styles';
 
 const Home = () => {
   const [value, setValue] = useState('');
+  const [description, setDescription] = useState('');
+  const inputColor = value ? '#035AC5' : '#C0CCDA';
+  const maxLength = 140;
   return (
     <View style={[styles.section]}>
       <View style={[styles.containerNumberInput]}>
-        <Typography variant="input">$</Typography>
-        <NumberInput value={value} onChangeText={setValue} placeholder="0.00" />
+        <Typography variant="input" color={inputColor}>
+          $
+        </Typography>
+        <NumberInput
+          value={value}
+          onChangeText={setValue}
+          placeholder="0,00"
+          color={inputColor}
+        />
       </View>
       <View style={[styles.containerTextInput]}>
         <View style={[styles.rowTextInput]}>
@@ -19,7 +29,16 @@ const Home = () => {
           width="100%"
           height="56"
           placeholder="Añade descripción del pago"
+          onChangeText={setDescription}
+          maxLength={maxLength}
         />
+        {description.length > 0 && (
+          <View style={[styles.rowCharactersTextInput]}>
+            <Typography variant="placeholder">
+              {`${description.length} / ${maxLength}`} caracteres
+            </Typography>
+          </View>
+        )}
       </View>
     </View>
   );
