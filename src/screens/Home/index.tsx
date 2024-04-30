@@ -8,10 +8,11 @@ import {
   TextInputContainer,
 } from './styles';
 import {useAppTheme} from '../../config/theme';
-
-const maxLength = 140;
+import {useTranslation} from 'react-i18next';
+import {BUTTON_HEIGHT, MARGIN, MAX_LENGTH, PADDING} from '../../constants';
 
 const Home = () => {
+  const {t} = useTranslation();
   const theme = useAppTheme();
   const [value, setValue] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -35,31 +36,34 @@ const Home = () => {
       </NumberInputContainer>
       <TextInputContainer>
         <StyledRow
-          paddingLeft={10}
-          marginBottom={10}
+          paddingLeft={PADDING}
+          marginBottom={MARGIN}
           width="100%"
           justifyContent="center"
           alignItems="flex-start">
           <Typography variant="text" color={theme.colors.primaryDark}>
-            Concepto
+            {t('concept')}
           </Typography>
         </StyledRow>
         <TextInput
           width="100%"
           height="56"
-          placeholder="Añade descripción del pago"
+          placeholder={t('addPaymentDescription')}
           onChangeText={setDescription}
-          maxLength={maxLength}
+          maxLength={MAX_LENGTH}
         />
         {description.length > 0 && (
           <StyledRow
-            paddingLeft={10}
-            marginBottom={10}
+            paddingLeft={PADDING}
+            marginBottom={MARGIN}
             width="100%"
             justifyContent="center"
             alignItems="flex-end">
             <Typography variant="placeholder">
-              {`${description.length} / ${maxLength}`} caracteres
+              {t('characterCount', {
+                count: description.length,
+                max: MAX_LENGTH,
+              })}
             </Typography>
           </StyledRow>
         )}
@@ -67,10 +71,10 @@ const Home = () => {
       <ButtonContainer>
         <Button
           width="100%"
-          height="50px"
+          height={BUTTON_HEIGHT}
           disabled={value.length === 0}
           onPress={() => console.log('Button Pressed')}>
-          Continuar
+          {t('continue')}
         </Button>
       </ButtonContainer>
     </Section>
