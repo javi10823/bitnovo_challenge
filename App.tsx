@@ -8,6 +8,7 @@ import {SafeAreaView} from 'react-native';
 import {Home, SelectBadge} from './src/screens';
 import {PaperProvider} from 'react-native-paper';
 import {theme} from './src/config/theme';
+import {ThemeProvider} from 'styled-components';
 
 export type ScreenNames = ['home', 'selectBadge']; // type these manually
 export type RootStackParamList = Record<ScreenNames[number], undefined>;
@@ -19,17 +20,19 @@ const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
   return (
     <PaperProvider theme={theme}>
-      <SafeAreaView style={{flex: 1}}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="selectBadge" component={SelectBadge} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
+      <ThemeProvider theme={theme}>
+        <SafeAreaView style={{flex: 1}}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}>
+              <Stack.Screen name="home" component={Home} />
+              <Stack.Screen name="selectBadge" component={SelectBadge} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </ThemeProvider>
     </PaperProvider>
   );
 }
