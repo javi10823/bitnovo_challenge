@@ -6,7 +6,7 @@ const NumberInput: React.FC<ExtendedNumberInputProps> = ({
   value,
   onChangeText,
   placeholder,
-  color = '#C0CCDA',
+  color,
 }) => {
   return (
     <StyledInput

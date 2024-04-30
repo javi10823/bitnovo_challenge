@@ -5,7 +5,7 @@ import {ContentSizeChangeEvent, InputProps} from './types';
 const TextInput: React.FC<InputProps> = ({
   width,
   height: initialHeight,
-  placeholderTextColor = '#647184',
+  placeholderTextColor,
   maxLength = 140,
   ...props
 }) => {

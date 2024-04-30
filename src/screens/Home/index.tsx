@@ -7,11 +7,16 @@ import {
   StyledRow,
   TextInputContainer,
 } from './styles';
+import {useTheme} from 'react-native-paper';
 
 const Home = () => {
+  const theme = useTheme();
   const [value, setValue] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const inputColor = useMemo(() => (value ? '#035AC5' : '#C0CCDA'), [value]);
+  const inputColor = useMemo(
+    () => (value ? theme.colors.primary : theme.colors.tertiary),
+    [value, theme.colors],
+  );
   const maxLength = 140;
 
   return (
