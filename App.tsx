@@ -5,6 +5,7 @@ import {Home} from './src/screens';
 import {Header} from './src/components';
 import {PaperProvider} from 'react-native-paper';
 import {theme} from './src/config/theme';
+import './services/i18next';
 
 const Stack = createNativeStackNavigator();
 

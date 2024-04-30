@@ -1,0 +1,6 @@
+{
+    "concept": "Concepto",
+    "addPaymentDescription": "Añade descripción del pago",
+    "characterCount": "{{count}} / {{max}} characters",
+    "continue": "Continuar"
+}
