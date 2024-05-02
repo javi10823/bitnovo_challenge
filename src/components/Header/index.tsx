@@ -1,24 +1,34 @@
+import {ReactElement} from 'react';
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleProp, View, ViewStyle} from 'react-native';
 import Typography from '../Typography';
+import {useAppNavigation} from '../../../App';
+import ArrowLeft from '../../assets/arrowLeft.svg';
+import {BackButton, HeaderContainer, styles} from './styles';
 
-const Header = () => {
+interface Props {
+  title: string;
+  style?: StyleProp<ViewStyle>;
+  goBack?: boolean;
+  rigthHeader?: ReactElement;
+}
+
+const Header = ({title, rigthHeader, goBack, style}: Props) => {
+  const navigation = useAppNavigation();
+
   return (
-    <View style={styles.headerContainer}>
-      <Typography variant="heading5">Custom Header</Typography>
-    </View>
+    <HeaderContainer style={style}>
+      <View style={styles.flexContainer}>
+        {goBack && (
+          <BackButton onPress={() => navigation.goBack()}>
+            <ArrowLeft />
+          </BackButton>
+        )}
+      </View>
+      <Typography variant="heading5">{title}</Typography>
+      <View style={styles.flexContainer}>{rigthHeader}</View>
+    </HeaderContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    height: 80,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#000',
-  },
-});
 
 export default Header;
