@@ -1,27 +1,23 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {Input} from './styles';
-import {ContentSizeChangeEvent, InputProps} from './types';
+import {TextInputProps} from 'react-native';
 
-const TextInput = ({
-  width,
-  height: initialHeight,
-  placeholderTextColor,
-  maxLength = 140,
-  ...props
-}: InputProps) => {
-  const [height, setHeight] = useState(initialHeight);
-  const adjustHeight = useCallback((event: ContentSizeChangeEvent) => {
-    const newHeight = event.nativeEvent.contentSize.height;
-    setHeight(`${newHeight}px`);
-  }, []);
+export type Props = TextInputProps & {
+  placeholderTextColor?: string;
+  isActive?: boolean;
+};
+
+const TextInput = ({placeholderTextColor, maxLength, ...props}: Props) => {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <Input
-      width={width}
-      height={height}
       placeholderTextColor={placeholderTextColor}
       multiline={true}
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
       maxLength={maxLength}
-      onContentSizeChange={adjustHeight}
+      isActive={isActive}
       {...props}
     />
   );

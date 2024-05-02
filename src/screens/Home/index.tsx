@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useLayoutEffect, useMemo, useState} from 'react';
 import {
   Button,
   Header,
@@ -8,32 +8,74 @@ import {
 } from '../../components';
 import {
   ButtonContainer,
+  CurrencySelector,
   NumberInputContainer,
   Section,
-  StyledRow,
   styles,
   TextInputContainer,
 } from './styles';
 import {useAppTheme} from '../../config/theme';
 import {useTranslation} from 'react-i18next';
-import {BUTTON_HEIGHT, MARGIN, MAX_LENGTH, PADDING} from '../../constants';
-import {Text} from 'react-native';
+import {MAX_LENGTH} from '../../constants';
+import {Alert, View} from 'react-native';
 import {useAppNavigation} from '../../../App';
+import VueDown from '../../assets/vueDown.svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useIsFocused} from '@react-navigation/native';
+import {Currency} from '../../config/types';
+import {apiService} from '../../service';
 
 const Home = () => {
   const {t} = useTranslation();
   const theme = useAppTheme();
+  const isFocused = useIsFocused();
   const navigation = useAppNavigation();
-  const [value, setValue] = useState<string>('');
+  const [currency, setCurrency] = useState<Currency>();
+  const [value, setValue] = useState<number | null>(null);
   const [description, setDescription] = useState<string>('');
+
   const inputColor = useMemo(
     () => (value ? theme.colors.primary : theme.colors.secondary8),
     [value, theme.colors],
   );
 
   const renderRightHeader = () => (
-    <Text onPress={() => navigation.navigate('selectBadge')}>Currency</Text>
+    <View style={styles.currencySelectorContainer}>
+      <CurrencySelector onPress={() => navigation.navigate('selectBadge')}>
+        <Typography variant="smallBold">{currency?.fiat}</Typography>
+        <VueDown />
+      </CurrencySelector>
+    </View>
   );
+
+  const generateOrder = async () => {
+    apiService
+      .post('/orders/', {
+        expected_output_amount: value,
+        fiat: currency?.fiat,
+        reference: description,
+      })
+      .then(response => {
+        const order = response.data;
+        console.log(order);
+      })
+      .catch(() => {
+        Alert.alert('Ocurrio un error inesperado al generar la orden de pago');
+      });
+  };
+
+  const disabled = useMemo(() => !currency || !value, [value, currency]);
+
+  useLayoutEffect(() => {
+    const getCurrency = async () => {
+      const selectedCurrency = await AsyncStorage.getItem('currency');
+      if (selectedCurrency) {
+        return setCurrency(JSON.parse(selectedCurrency));
+      }
+      navigation.navigate('selectBadge');
+    };
+    getCurrency();
+  }, [isFocused, navigation]);
 
   return (
     <>
@@ -45,7 +87,7 @@ const Home = () => {
       <Section>
         <NumberInputContainer>
           <Typography variant="input" color={inputColor}>
-            $
+            {currency?.symbol}
           </Typography>
           <NumberInput
             value={value}
@@ -55,45 +97,28 @@ const Home = () => {
           />
         </NumberInputContainer>
         <TextInputContainer>
-          <StyledRow
-            paddingLeft={PADDING}
-            marginBottom={MARGIN}
-            width="100%"
-            justifyContent="center"
-            alignItems="flex-start">
-            <Typography variant="text" color={theme.colors.primaryDark}>
-              {t('concept')}
-            </Typography>
-          </StyledRow>
+          <Typography variant="text" color={theme.colors.primaryDark}>
+            {t('concept')}
+          </Typography>
           <TextInput
-            width="100%"
-            height="56"
             placeholder={t('addPaymentDescription')}
             onChangeText={setDescription}
             maxLength={MAX_LENGTH}
           />
           {description.length > 0 && (
-            <StyledRow
-              paddingLeft={PADDING}
-              marginBottom={MARGIN}
-              width="100%"
-              justifyContent="center"
-              alignItems="flex-end">
-              <Typography variant="placeholder">
-                {t('characterCount', {
-                  count: description.length,
-                  max: MAX_LENGTH,
-                })}
-              </Typography>
-            </StyledRow>
+            <Typography variant="placeholder" style={styles.maxDescription}>
+              {t('characterCount', {
+                count: description.length,
+                max: MAX_LENGTH,
+              })}
+            </Typography>
           )}
         </TextInputContainer>
         <ButtonContainer>
           <Button
-            width="100%"
-            height={BUTTON_HEIGHT}
-            disabled={value.length === 0}
-            onPress={() => console.log('Button Pressed')}>
+            style={styles.button}
+            disabled={disabled}
+            onPress={generateOrder}>
             {t('continue')}
           </Button>
         </ButtonContainer>

@@ -1,16 +1,23 @@
 import {ReactElement, ReactNode} from 'react';
-import {Text, TextStyle} from 'react-native';
+import {StyleProp, Text, TextStyle} from 'react-native';
 import {useAppTheme} from '../../config/theme';
 
-type VariantsKeys = 'heading5' | 'input' | 'text' | 'placeholder' | 'text';
+type VariantsKeys =
+  | 'heading5'
+  | 'input'
+  | 'text'
+  | 'placeholder'
+  | 'text'
+  | 'smallBold';
 
 interface Props {
   variant: VariantsKeys;
   children: string | ReactElement | ReactNode;
   color?: string;
+  style?: StyleProp<TextStyle>;
 }
 
-const Typography = ({variant, children, color}: Props) => {
+const Typography = ({variant, children, color, style}: Props) => {
   const theme = useAppTheme();
 
   const variants: Record<VariantsKeys, TextStyle> = {
@@ -42,9 +49,16 @@ const Typography = ({variant, children, color}: Props) => {
       lineHeight: 16,
       color: color || theme.colors.secondaryDark4,
     },
+    smallBold: {
+      fontFamily: 'Mulish',
+      fontSize: 12,
+      fontWeight: 700,
+      lineHeight: 16,
+      color: color || theme.colors.primaryDark,
+    },
   };
 
-  return <Text style={variants[variant]}>{children}</Text>;
+  return <Text style={[variants[variant], style]}>{children}</Text>;
 };
 
 export default Typography;

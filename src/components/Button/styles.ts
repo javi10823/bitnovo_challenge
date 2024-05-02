@@ -1,10 +1,7 @@
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import styled from 'styled-components/native';
-import {ButtonProps} from './types';
 
-export const StyledButton = styled(TouchableOpacity)<ButtonProps>`
-  width: ${({width = 'auto'}) => width};
-  height: ${({height = 'auto'}) => height};
+export const StyledButton = styled(TouchableOpacity)<TouchableOpacityProps>`
   border-radius: 6px;
   background-color: ${({disabled, theme}) =>
     disabled ? theme.colors.secondary6 : theme.colors.primary};

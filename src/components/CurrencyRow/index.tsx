@@ -3,9 +3,9 @@ import {Typography} from '..';
 import {Avatar} from 'react-native-paper';
 import VueRigth from '../../assets/vueRigth.svg';
 import TickCircle from '../../assets/tickCircle.svg';
-import {Currency} from '../../screens/SelectBadge';
 import {RowContainer, styles} from './styles';
 import {useAppTheme} from '../../config/theme';
+import {Currency} from '../../config/types';
 
 interface Props {
   isSelected: boolean;
@@ -26,8 +26,10 @@ const CurrencyRow = ({isSelected, item, onSelect}: Props) => {
       })}>
       <Avatar.Image size={32} source={{uri: item.image}} />
       <View>
-        <Typography variant="text">{item.name}</Typography>
-        <Typography variant="subText">{item.blockchain}</Typography>
+        <Typography variant="text" color={theme.colors.primaryDark}>
+          {item.name}
+        </Typography>
+        <Typography variant="placeholder">{item.fiat}</Typography>
       </View>
       <View style={styles.iconContainer}>
         {isSelected ? <TickCircle /> : <VueRigth />}
