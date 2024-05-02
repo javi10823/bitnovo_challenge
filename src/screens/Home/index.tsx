@@ -60,7 +60,7 @@ const Home = () => {
         console.log(order);
       })
       .catch(() => {
-        Alert.alert('Ocurrio un error inesperado al generar la orden de pago');
+        Alert.alert(t('orderError'));
       });
   };
 
@@ -80,7 +80,7 @@ const Home = () => {
   return (
     <>
       <Header
-        title="Importe a pagar"
+        title={t('homeHeader')}
         style={styles.header}
         rigthHeader={renderRightHeader()}
       />
