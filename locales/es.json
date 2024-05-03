@@ -2,6 +2,7 @@
     "concept": "Concepto",
     "homeHeader": "Importe a pagar",
     "selectHeader": "Selecciona una divisa",
+    "selectPhoneHeader": "Seleccionar país",
     "addPaymentDescription": "Añade descripción del pago",
     "characterCount": "{{count}} / {{max}} characters",
     "continue": "Continuar",

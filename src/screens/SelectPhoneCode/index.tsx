@@ -107,7 +107,7 @@ const SelectPhoneCode = () => {
 
   return (
     <Container>
-      <Header title={t('selectHeader')} goBack />
+      <Header title={t('selectPhoneHeader')} goBack />
       <Content>
         <SearchbarContainer>
           <Search />
