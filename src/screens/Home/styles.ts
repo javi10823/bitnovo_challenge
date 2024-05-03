@@ -1,23 +1,12 @@
-import {ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
-interface StyledRowProps {
-  paddingLeft?: number;
-  marginBottom?: number;
-  paddingRight?: number;
-  marginTop?: number;
-  width?: string | number;
-  justifyContent?: ViewStyle['justifyContent'];
-  alignItems?: ViewStyle['alignItems'];
-}
-
 export const Section = styled.View`
-  background-color: #fff;
+  background-color: ${({theme}) => theme.colors.secondary5};
+  padding-horizontal: 18px;
   width: 100%;
   height: 100%;
   flex: 1;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Container = styled.View`
@@ -26,31 +15,47 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const NumberInputContainer = styled(Container)`
-  flex: 0.2;
+export const NumberInputContainer = styled.View`
+  margin-top: 64px;
+  margin-bottom: 50px;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-horizontal: 18px;
+  gap: 12px;
 `;
 
-export const TextInputContainer = styled(Container)`
-  flex: 0.2;
+export const TextInputContainer = styled.View`
+  gap: 4px;
 `;
 
-export const ButtonContainer = styled(Container)`
-  flex: 0.6;
-  flex-direction: row;
-  align-items: flex-end;
+export const ButtonContainer = styled.View`
+  margin-top: auto;
   padding-bottom: 15px;
 `;
 
-export const StyledRow = styled.View<StyledRowProps>`
-  padding-left: ${props =>
-    props.paddingLeft ? `${props.paddingLeft}px` : '0px'};
-  margin-bottom: ${props =>
-    props.marginBottom ? `${props.marginBottom}px` : '0px'};
-  padding-right: ${props =>
-    props.paddingRight ? `${props.paddingRight}px` : '0px'};
-  margin-top: ${props => (props.marginTop ? `${props.marginTop}px` : '0px')};
-  width: ${props => props.width || 'auto'};
-  justify-content: ${props => props.justifyContent || 'flex-start'};
-  align-items: ${props => props.alignItems || 'flex-start'};
+export const CurrencySelector = styled.Pressable`
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: ${({theme}) => theme.colors.secondary9};
+  height: 28px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 8px;
+  border-radius: 24px;
 `;
+
+export const styles = StyleSheet.create({
+  header: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#60617029',
+  },
+  button: {
+    height: 56,
+  },
+  maxDescription: {textAlign: 'right'},
+  currencySelectorContainer: {flexDirection: 'row-reverse'},
+});

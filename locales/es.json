@@ -1,6 +1,17 @@
 {
     "concept": "Concepto",
+    "homeHeader": "Importe a pagar",
+    "selectHeader": "Selecciona una divisa",
     "addPaymentDescription": "Añade descripción del pago",
     "characterCount": "{{count}} / {{max}} characters",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "send": "Enviar",
+    "sendByEmail": "Enviar por correo electrónico",
+    "shareWithApps": "Compartir con otras aplicaciones",
+    "newRequest": "Nueva solicitud",
+    "paymentRequest": "Solicitud de pago",
+    "sharePaymentLinkWithCustomer": "Comparte el enlace de pago con el cliente",
+    "shareWithWhatsapp": "Enviar a número de WhatsApp",
+    "search": "Buscar",
+    "orderError": "Ocurrio un error inesperado al generar la orden de pago"
 }

@@ -1,29 +1,38 @@
-import React, {useCallback, useState} from 'react';
-import {Input} from './styles';
-import {ContentSizeChangeEvent, InputProps} from './types';
+import React, {ReactElement, useState} from 'react';
+import {Input, InputContainer} from './styles';
+import {TextInputProps} from 'react-native';
+
+export type Props = TextInputProps & {
+  placeholderTextColor?: string;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
+  isActive?: boolean;
+};
 
 const TextInput = ({
-  width,
-  height: initialHeight,
+  leftIcon,
+  rightIcon,
   placeholderTextColor,
-  maxLength = 140,
+  maxLength,
+  style,
   ...props
-}: InputProps) => {
-  const [height, setHeight] = useState(initialHeight);
-  const adjustHeight = useCallback((event: ContentSizeChangeEvent) => {
-    const newHeight = event.nativeEvent.contentSize.height;
-    setHeight(`${newHeight}px`);
-  }, []);
+}: Props) => {
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <Input
-      width={width}
-      height={height}
-      placeholderTextColor={placeholderTextColor}
-      multiline={true}
-      maxLength={maxLength}
-      onContentSizeChange={adjustHeight}
-      {...props}
-    />
+    <InputContainer isActive={isActive} style={style}>
+      {leftIcon}
+      <Input
+        placeholderTextColor={placeholderTextColor}
+        onFocus={() => setIsActive(true)}
+        onBlur={() => setIsActive(false)}
+        maxLength={maxLength}
+        style={style}
+        isActive={isActive}
+        {...props}
+      />
+      {rightIcon}
+    </InputContainer>
   );
 };
 

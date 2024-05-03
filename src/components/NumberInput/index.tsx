@@ -1,16 +1,18 @@
 import React from 'react';
 import {StyledInput} from './styles';
-import {ExtendedNumberInputProps} from './types';
+import {TextStyle} from 'react-native';
 
-const NumberInput = ({
-  value,
-  onChangeText,
-  placeholder,
-  style,
-}: ExtendedNumberInputProps) => (
+type Props = {
+  value: number | null;
+  onChangeText: (text: number | null) => void;
+  placeholder?: string;
+  style?: TextStyle;
+};
+
+const NumberInput = ({value, onChangeText, placeholder, style}: Props) => (
   <StyledInput
     value={value}
-    onChangeText={onChangeText}
+    onChangeValue={onChangeText}
     placeholder={placeholder}
     placeholderTextColor={style?.color}
     style={style}
