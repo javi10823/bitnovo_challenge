@@ -82,7 +82,7 @@ const SharePayment = ({route}: Props) => {
 
   const onShareWhast = () =>
     Linking.openURL(
-      `whatsapp://send?text=${order.web_url}&phone=+54${phone}`,
+      `whatsapp://send?text=${order.web_url}&phone=${code}${phone}`,
     ).then(() => {
       setShowModal(true);
     });

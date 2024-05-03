@@ -1,6 +1,6 @@
 import {FlatList} from 'react-native';
 import {Header, ListRow} from '../../components';
-import {useLayoutEffect, useMemo, useState} from 'react';
+import {ReactElement, useLayoutEffect, useMemo, useState} from 'react';
 import {theme} from '../../config/theme';
 import Search from '../../assets/search.svg';
 import {
@@ -12,10 +12,18 @@ import {
 } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTranslation} from 'react-i18next';
+import Spain from '../../assets/spain.svg';
+import Ecuatorial from '../../assets/ecuatorial.svg';
+import Grec from '../../assets/grec.svg';
+import Georgia from '../../assets/georgia.svg';
+import Guatemala from '../../assets/guatemala.svg';
+import Guayana from '../../assets/guayana.svg';
+import HongKong from '../../assets/hongKong.svg';
+import Honduras from '../../assets/honduras.svg';
 
 interface PhoneCode {
   code: string;
-  flag: string;
+  flag: ReactElement;
   name: string;
 }
 
@@ -23,7 +31,42 @@ const PHONE_CODES: PhoneCode[] = [
   {
     name: 'España',
     code: '+34',
-    flag: '',
+    flag: <Spain />,
+  },
+  {
+    name: 'Equatorial Guinea',
+    code: '+240',
+    flag: <Ecuatorial />,
+  },
+  {
+    name: 'Grecia',
+    code: '+30',
+    flag: <Grec />,
+  },
+  {
+    name: 'Southgeorgia and the S...',
+    code: '+500',
+    flag: <Georgia />,
+  },
+  {
+    name: 'Guatemala',
+    code: '+502',
+    flag: <Guatemala />,
+  },
+  {
+    name: 'Guayana',
+    code: '+592',
+    flag: <Guayana />,
+  },
+  {
+    name: 'Hong Kong',
+    code: '+852',
+    flag: <HongKong />,
+  },
+  {
+    name: 'Honduras',
+    code: '+504',
+    flag: <Honduras />,
   },
 ];
 
@@ -55,7 +98,6 @@ const SelectPhoneCode = () => {
   useLayoutEffect(() => {
     const getItems = async () => {
       const phoneCode = await AsyncStorage.getItem('phoneCode');
-      console.log('phoneCode', phoneCode);
 
       phoneCode && setSelected(phoneCode);
     };

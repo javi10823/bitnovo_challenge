@@ -1,14 +1,14 @@
 import {View} from 'react-native';
 import {Typography} from '..';
-import {Avatar} from 'react-native-paper';
 import VueRigth from '../../assets/vueRigth.svg';
 import TickCircle from '../../assets/tickCircle.svg';
 import {RowContainer, styles} from './styles';
 import {useAppTheme} from '../../config/theme';
+import {ReactElement} from 'react';
 
 interface Props {
   isSelected: boolean;
-  image: string;
+  image: ReactElement;
   title: string;
   subtitle: string;
   id: string;
@@ -26,7 +26,7 @@ const ListRow = ({isSelected, image, title, subtitle, id, onSelect}: Props) => {
           ? theme.colors.secondary4
           : theme.colors.transparent,
       })}>
-      <Avatar.Image size={32} source={{uri: image}} />
+      {image}
       <View>
         <Typography variant="text" color={theme.colors.primaryDark}>
           {title}

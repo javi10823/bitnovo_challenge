@@ -12,8 +12,31 @@ import {
 } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Currency} from '../../config/types';
-import {CURRENCIES} from '../../constants';
 import {useTranslation} from 'react-i18next';
+import Eur from '../../assets/eur.svg';
+import Usd from '../../assets/usd.svg';
+import Pound from '../../assets/georgia.svg';
+
+export const CURRENCIES: Currency[] = [
+  {
+    symbol: '€',
+    name: 'Euro',
+    fiat: 'EUR',
+    image: <Eur />,
+  },
+  {
+    symbol: '$',
+    name: 'Dólar Estadounidense',
+    fiat: 'USD',
+    image: <Usd />,
+  },
+  {
+    symbol: '£',
+    name: 'Libra Esterlina',
+    fiat: 'GBP',
+    image: <Pound />,
+  },
+];
 
 const SelectBadge = () => {
   const {t} = useTranslation();
