@@ -2,7 +2,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 
 https://github.com/javi10823/bitnovo_challenge/assets/1581454/b6471098-bdf4-4d0e-a84e-6fb48935c484
-
+NOTE: There was a typo on the header of the screen of selecct phone code, It was fixed.
 
 # Getting Started
 
