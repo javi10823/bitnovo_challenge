@@ -3,6 +3,5 @@
   "include": ["src/components", "svg.d.ts"],
   "compilerOptions": {
     "jsx": "react-jsx"
-  },
-
+  }
 }

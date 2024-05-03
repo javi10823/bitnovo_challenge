@@ -15,14 +15,7 @@ interface Props {
   onSelect: (item: string) => void;
 }
 
-const CurrencyRow = ({
-  isSelected,
-  image,
-  title,
-  subtitle,
-  id,
-  onSelect,
-}: Props) => {
+const ListRow = ({isSelected, image, title, subtitle, id, onSelect}: Props) => {
   const theme = useAppTheme();
   return (
     <RowContainer
@@ -47,4 +40,4 @@ const CurrencyRow = ({
   );
 };
 
-export default CurrencyRow;
+export default ListRow;
