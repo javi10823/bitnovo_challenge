@@ -45,7 +45,13 @@ const SelectBadge = () => {
 
   const onSelect = async (id: string) => {
     const item = currencies.find(({fiat}) => fiat === id);
-    await AsyncStorage.setItem('currency', JSON.stringify(item));
+    if (item) {
+      const {name, fiat, symbol} = item;
+      await AsyncStorage.setItem(
+        'currency',
+        JSON.stringify({name, fiat, symbol}),
+      );
+    }
     setSelected(item);
   };
 
